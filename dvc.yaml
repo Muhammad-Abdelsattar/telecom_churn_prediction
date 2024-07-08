@@ -1,0 +1,29 @@
+stages:
+  prepare:
+    cmd: python -m steps.prepare_data
+    deps:
+    - steps/prepare_data.py
+    - churn_prediction/data.py
+    - input/train.csv
+    params:
+    - data
+    outs:
+    - input\prepared_train.csv
+
+  train:
+    cmd: python -m steps.train
+    deps:
+    - steps/train.py
+    - churn_prediction/modeling.py
+    - churn_prediction/training.py
+    - input/prepared_train.csv
+    - input/train.csv
+    params:
+    - pipeline.models.use_model
+    outs:
+    - models/pipeline.pkl
+    - reports/metrics.json:
+      cache: false  
+
+metrics:
+  - reports/metrics.json
