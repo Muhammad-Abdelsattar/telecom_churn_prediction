@@ -1,4 +1,4 @@
-for .utils import get_scores, log_score
+from .utils import get_scores, log_score
 
 def evaluate(pipeline,features,target):
     preds = pipeline.predict(features)
