@@ -1,6 +1,6 @@
 from sklearn.metrics import recall_score,precision_score,roc_curve,roc_auc_score,f1_score,accuracy_score
 from pickle import dump, load
-import json
+from omegaconf import OmegaConf
 
 def get_scores(preds,labels):
     scores = {}
@@ -15,9 +15,13 @@ def log_score(score,filepath,stage):
     stage_score = {}
     for k,v in score.items():
         stage_score[stage+"."+k] = score[k]
-    with open(filepath,"w") as f:
-        json.dump(stage_score,f)
-
+    try:
+        all_scores = OmegaConf.load(filepath)
+        all_scores.update(stage_score)
+        OmegaConf.save(all_scores,filepath)
+    except FileNotFoundError:
+        OmegaConf.save(stage_score,filepath)
+        
 def get_average_cv_score(folds_scores):
     avg_scores = {}
     k = len(folds_scores)

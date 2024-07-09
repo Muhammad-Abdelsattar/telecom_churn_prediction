@@ -10,8 +10,7 @@ def train(config):
     pipeline = modeling.build_pipeline(config["pipeline"],cat_cols)
     k = 5
     pipeline_file_path = config["pipeline"]["filepath"]
-    scores_filepath = config["scores"]["filepath"]
-    training.train(pipeline,data,k,pipeline_file_path,scores_filepath)
+    training.train(pipeline,data,k,pipeline_file_path,"reports/metrics/validation.yaml")
     
 if __name__ == "__main__":
     config = OmegaConf.load(r"params.yaml")

@@ -5,8 +5,10 @@ stages:
     - steps/prepare_data.py
     - churn_prediction/data.py
     - input/train.csv
+    - input/test.csv
     outs:
     - input\prepared_train.csv
+    - input\prepared_test.csv
 
   train:
     cmd: python -m steps.train
@@ -21,8 +23,32 @@ stages:
     - pipeline.model.params
     outs:
     - models/pipeline.pkl
-    - reports/metrics.json:
-        cache: false  
+    - reports/metrics/validation.yaml:
+        cache: false
 
+    # evaluate:
+    #     cmd: python -m steps.evaluate
+    #     deps:
+    #     - steps/evaluate.py
+    #     - churn_prediction/evaluation.py
+    #     - input/prepared_test.csv
+    #     - input/test.csv
+    #     - models/pipeline.pkl
+    #     params:
+    #     outs:
+    #     - reports/metrics.yaml:
+    #         cache: false 
+
+  evaluate:
+    cmd: python -m steps.evaluate
+    deps:
+    - churn_prediction/evaluation.py
+    - input/prepared_test.csv
+    - input/test.csv
+    - models/pipeline.pkl
+    - steps/evaluate.py
+    outs:
+    - reports/metrics/test.yaml:
+        cache: false
 metrics:
-  - reports/metrics.json
+- reports/metrics

@@ -1,6 +1,3 @@
-scores:
-  filepath: reports/metrics.json
-
 pipeline:
   filepath: models/pipeline.pkl
 
