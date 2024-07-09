@@ -7,6 +7,13 @@ def clean_total_charges(x):
         return np.nan
     return x
 
+def clean_senior_citizen(x):
+    if(x==0):
+        return "No"
+    elif(x==1):
+        return "Yes"
+    return x
+
 def drop_ininformative_columns(data):
     return data.drop(axis=1,labels=["customerID"])
 
@@ -18,6 +25,7 @@ def remove_duplicates(data):
 
 def clean_data(data):
     data["TotalCharges"] = data["TotalCharges"].map(clean_total_charges).astype(float)
+    data["SeniorCitizen"] = data["SeniorCitizen"].map(cast_senior_citizen).astype(object)
     data = drop_ininformative_columns(data)
     data = handle_null_values(data)
     data = remove_duplicates(data)
