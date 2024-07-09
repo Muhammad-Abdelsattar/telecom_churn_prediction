@@ -14,7 +14,7 @@ def get_scores(preds,labels):
 def log_score(score,filepath,stage):
     stage_score = {}
     for k,v in score.items():
-        stage_score[stage+"."+k] = score[k]
+        stage_score[stage+"."+k] = float(score[k])
     try:
         all_scores = OmegaConf.load(filepath)
         all_scores.update(stage_score)

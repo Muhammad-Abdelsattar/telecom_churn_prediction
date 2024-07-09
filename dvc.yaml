@@ -26,19 +26,6 @@ stages:
     - reports/metrics/validation.yaml:
         cache: false
 
-    # evaluate:
-    #     cmd: python -m steps.evaluate
-    #     deps:
-    #     - steps/evaluate.py
-    #     - churn_prediction/evaluation.py
-    #     - input/prepared_test.csv
-    #     - input/test.csv
-    #     - models/pipeline.pkl
-    #     params:
-    #     outs:
-    #     - reports/metrics.yaml:
-    #         cache: false 
-
   evaluate:
     cmd: python -m steps.evaluate
     deps:
