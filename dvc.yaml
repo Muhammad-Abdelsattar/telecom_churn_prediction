@@ -5,8 +5,6 @@ stages:
     - steps/prepare_data.py
     - churn_prediction/data.py
     - input/train.csv
-    params:
-    - data
     outs:
     - input\prepared_train.csv
 
@@ -19,11 +17,12 @@ stages:
     - input/prepared_train.csv
     - input/train.csv
     params:
-    - pipeline.models.use_model
+    - pipeline.model.use_model
+    - pipeline.model.params
     outs:
     - models/pipeline.pkl
     - reports/metrics.json:
-      cache: false  
+        cache: false  
 
 metrics:
   - reports/metrics.json

@@ -4,8 +4,9 @@ from churn_prediction import training, modeling
 
 
 def train(config):
-    data = pd.read_csv(config["data"]["prepared_data_path"])
-    cat_cols = data.select_types(include=object)
+    data = pd.read_csv(r"input/prepared_train.csv")
+    cat_cols = list(data.select_dtypes(include=object).columns)
+    cat_cols.remove("Churn")
     pipeline = modeling.build_pipeline(config["pipeline"],cat_cols)
     k = 5
     pipeline_file_path = config["pipeline"]["filepath"]

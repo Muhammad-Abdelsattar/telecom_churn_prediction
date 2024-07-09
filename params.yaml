@@ -1,25 +1,11 @@
-data:
-    raw_data_path: input/train.csv
-    prepared_data_path: input/prepared_train.csv
-
 scores:
-    filepath: reports/metrics.json
+  filepath: reports/metrics.json
 
 pipeline:
-    filepath: models/pipeline.pkl
-    
-    models:
-        use_model: xgb
-        models_parameters:
-            rf_params: 
-                n_estimators: 100
-                random_state: 42
-            xgb_params:
-                n_estimators: 100
-                random_state: 42
-            lr_params:
-                random_state: 42
-            svc_params:
-                random_state: 42
+  filepath: models/pipeline.pkl
 
-    
+  model:
+    use_model: xgb
+    params:
+      n_estimators: 100
+      random_state: 42

@@ -26,17 +26,17 @@ def build_preprocessor(categorical_columns):
 
 def build_model(config):
     model_dispatcher = {
-        "rf" : RandomForestClassifier(**(config["models_parameters"]["rf_params"])),
-        "xgb" : XGBClassifier(**config["models_parameters"]["xgb_params"]),
-        "lr" : LogisticRegression(**config["models_parameters"]["lr_params"]),
-        "svc" : SVC(**config["models_parameters"]["svc_params"]),
+        "rf" : RandomForestClassifier,
+        "xgb" : XGBClassifier,
+        "lr" : LogisticRegression,
+        "svc" : SVC,
     }
-    return model_dispatcher[config["use_model"]]
+    return model_dispatcher[config["use_model"]](**config["params"])
 
 
 def build_pipeline(config,categorical_columns):
     preprocessor = build_preprocessor(categorical_columns)
-    model = build_model(config["models"])
+    model = build_model(config["model"])
     pipeline = Pipeline(
         steps=[
             ("preprocessing",preprocessor),

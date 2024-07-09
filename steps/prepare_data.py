@@ -2,8 +2,8 @@ from churn_prediction import data
 from omegaconf import OmegaConf
 
 def prepare_data(config):
-    prepared_data = data.prepare_data(config["data"]["raw_data_path"])
-    prepared_data.to_csv(config["data"]["prepared_data_path"], index=False)
+    prepared_data = data.prepare_data(r"input/train.csv")
+    prepared_data.to_csv(r"input/prepared_train.csv", index=False)
     
 
 if __name__ == "__main__":
