@@ -7,8 +7,8 @@ stages:
     - input/train.csv
     - input/test.csv
     outs:
-    - input\prepared_train.csv
-    - input\prepared_test.csv
+    - input/prepared_train.csv
+    - input/prepared_test.csv
 
   train:
     cmd: python -m steps.train

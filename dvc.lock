@@ -20,11 +20,11 @@ stages:
       md5: 06f4a60ebdc9eb67a4c4e248666f2d95
       size: 444
     outs:
-    - path: input\prepared_test.csv
+    - path: input/prepared_test.csv
       hash: md5
       md5: 6bb7f45cc0617c49bd1701bbe85a5198
       size: 88994
-    - path: input\prepared_train.csv
+    - path: input/prepared_train.csv
       hash: md5
       md5: 67971c990211822ae70d7a4746aa11ea
       size: 808172
@@ -33,8 +33,8 @@ stages:
     deps:
     - path: churn_prediction/modeling.py
       hash: md5
-      md5: 83913cb8f82f22ea4e89656acea0e85d
-      size: 1669
+      md5: 4b596e6ae465b84017d78a6138555870
+      size: 1624
     - path: churn_prediction/training.py
       hash: md5
       md5: a027aa27079f0cb47aefc67b8e3724a2
@@ -60,12 +60,12 @@ stages:
     outs:
     - path: models/pipeline.pkl
       hash: md5
-      md5: 2bbe027c5cdb419a504a6f25f36e437f
-      size: 318558
+      md5: 240372273327be6b6ea24c01f3eafe50
+      size: 305140
     - path: reports/metrics/validation.yaml
       hash: md5
-      md5: 0669c1f8778f6943861670cccd8e4300
-      size: 193
+      md5: 3c01cf8f94b9db851fc2686fc4b43e0a
+      size: 188
   evaluate:
     cmd: python -m steps.evaluate
     deps:
@@ -83,8 +83,8 @@ stages:
       size: 97438
     - path: models/pipeline.pkl
       hash: md5
-      md5: 2bbe027c5cdb419a504a6f25f36e437f
-      size: 318558
+      md5: 240372273327be6b6ea24c01f3eafe50
+      size: 305140
     - path: steps/evaluate.py
       hash: md5
       md5: 7d528a76efb85eb13b52f0f00d6bf4ac
@@ -92,5 +92,5 @@ stages:
     outs:
     - path: reports/metrics/test.yaml
       hash: md5
-      md5: 41a79f7be8e2700863a17b0028402dbe
-      size: 150
+      md5: 26ac0949dcca7dedab2856ba16cff1f9
+      size: 156
