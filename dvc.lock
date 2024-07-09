@@ -1,0 +1,96 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m steps.prepare_data
+    deps:
+    - path: churn_prediction/data.py
+      hash: md5
+      md5: ddc30413b58195d2dbb32cd90733870c
+      size: 966
+    - path: input/test.csv
+      hash: md5
+      md5: 35bc27476ce8399b5f1bfaf57e22794b
+      size: 97438
+    - path: input/train.csv
+      hash: md5
+      md5: 11d262fc987e44c0fcdaee3bda17b9e1
+      size: 881108
+    - path: steps/prepare_data.py
+      hash: md5
+      md5: 06f4a60ebdc9eb67a4c4e248666f2d95
+      size: 444
+    outs:
+    - path: input\prepared_test.csv
+      hash: md5
+      md5: 6bb7f45cc0617c49bd1701bbe85a5198
+      size: 88994
+    - path: input\prepared_train.csv
+      hash: md5
+      md5: 67971c990211822ae70d7a4746aa11ea
+      size: 808172
+  train:
+    cmd: python -m steps.train
+    deps:
+    - path: churn_prediction/modeling.py
+      hash: md5
+      md5: 83913cb8f82f22ea4e89656acea0e85d
+      size: 1669
+    - path: churn_prediction/training.py
+      hash: md5
+      md5: a027aa27079f0cb47aefc67b8e3724a2
+      size: 1634
+    - path: input/prepared_train.csv
+      hash: md5
+      md5: 67971c990211822ae70d7a4746aa11ea
+      size: 808172
+    - path: input/train.csv
+      hash: md5
+      md5: 11d262fc987e44c0fcdaee3bda17b9e1
+      size: 881108
+    - path: steps/train.py
+      hash: md5
+      md5: f6d5a2a05ecba767c3b56de7e5b43dfe
+      size: 582
+    params:
+      params.yaml:
+        pipeline.model.params:
+          n_estimators: 100
+          random_state: 42
+        pipeline.model.use_model: xgb
+    outs:
+    - path: models/pipeline.pkl
+      hash: md5
+      md5: 2bbe027c5cdb419a504a6f25f36e437f
+      size: 318558
+    - path: reports/metrics/validation.yaml
+      hash: md5
+      md5: 0669c1f8778f6943861670cccd8e4300
+      size: 193
+  evaluate:
+    cmd: python -m steps.evaluate
+    deps:
+    - path: churn_prediction/evaluation.py
+      hash: md5
+      md5: 58ad483f627562b71c1a9f0d620d1dc2
+      size: 238
+    - path: input/prepared_test.csv
+      hash: md5
+      md5: 6bb7f45cc0617c49bd1701bbe85a5198
+      size: 88994
+    - path: input/test.csv
+      hash: md5
+      md5: 35bc27476ce8399b5f1bfaf57e22794b
+      size: 97438
+    - path: models/pipeline.pkl
+      hash: md5
+      md5: 2bbe027c5cdb419a504a6f25f36e437f
+      size: 318558
+    - path: steps/evaluate.py
+      hash: md5
+      md5: 7d528a76efb85eb13b52f0f00d6bf4ac
+      size: 634
+    outs:
+    - path: reports/metrics/test.yaml
+      hash: md5
+      md5: 41a79f7be8e2700863a17b0028402dbe
+      size: 150
