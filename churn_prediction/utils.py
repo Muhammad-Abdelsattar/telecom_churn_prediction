@@ -38,6 +38,6 @@ def save_pipeline(pipeline,filepath):
         dump(pipeline, f, protocol=5)
 
 def load_pipeline(filepath):
-    with open(filepath, rb) as f:
+    with open(filepath, "rb") as f:
         pipeline = load(f)
     return pipeline
