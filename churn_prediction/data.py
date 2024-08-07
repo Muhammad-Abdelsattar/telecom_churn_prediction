@@ -25,7 +25,7 @@ def remove_duplicates(data):
 
 def clean_data(data):
     data["TotalCharges"] = data["TotalCharges"].map(clean_total_charges).astype(float)
-    data["SeniorCitizen"] = data["SeniorCitizen"].map(cast_senior_citizen).astype(object)
+    data["SeniorCitizen"] = data["SeniorCitizen"].map(clean_senior_citizen).astype(object)
     data = drop_ininformative_columns(data)
     data = handle_null_values(data)
     data = remove_duplicates(data)
