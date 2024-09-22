@@ -1,5 +1,5 @@
-validation.accuracy: 0.7712648048253787
-validation.recall: 0.5640737819347846
-validation.precision: 0.6019072303154884
-validation.f1: 0.5823204587158801
-validation.auc: 0.7085119912311637
+validation.accuracy: 0.7709475966587741
+validation.recall: 0.5667211441045881
+validation.precision: 0.5767789793547233
+validation.f1: 0.5715312490777104
+validation.auc: 0.7065991214207453

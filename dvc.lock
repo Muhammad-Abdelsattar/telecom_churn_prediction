@@ -5,8 +5,8 @@ stages:
     deps:
     - path: churn_prediction/data.py
       hash: md5
-      md5: ddc30413b58195d2dbb32cd90733870c
-      size: 966
+      md5: dae4d3c2ec30fe88e4f6e837a4ad0e9a
+      size: 1172
     - path: input/test.csv
       hash: md5
       md5: 35bc27476ce8399b5f1bfaf57e22794b
@@ -22,12 +22,12 @@ stages:
     outs:
     - path: input/prepared_test.csv
       hash: md5
-      md5: 6bb7f45cc0617c49bd1701bbe85a5198
-      size: 88994
+      md5: a6227b7736d4a3b35bd6f28aaeddde9b
+      size: 89088
     - path: input/prepared_train.csv
       hash: md5
-      md5: 67971c990211822ae70d7a4746aa11ea
-      size: 808172
+      md5: 3d012f5f0c6b0792e902834877d1b15d
+      size: 809217
   train:
     cmd: python -m steps.train
     deps:
@@ -41,8 +41,8 @@ stages:
       size: 1634
     - path: input/prepared_train.csv
       hash: md5
-      md5: 67971c990211822ae70d7a4746aa11ea
-      size: 808172
+      md5: 3d012f5f0c6b0792e902834877d1b15d
+      size: 809217
     - path: input/train.csv
       hash: md5
       md5: 11d262fc987e44c0fcdaee3bda17b9e1
@@ -60,11 +60,11 @@ stages:
     outs:
     - path: models/pipeline.pkl
       hash: md5
-      md5: 240372273327be6b6ea24c01f3eafe50
-      size: 305140
+      md5: d503b2ddb8146597faffba5c85e44aee
+      size: 329059
     - path: reports/metrics/validation.yaml
       hash: md5
-      md5: 3c01cf8f94b9db851fc2686fc4b43e0a
+      md5: 4c3c1c2bda363c907bff41ea7acfb5ef
       size: 188
   evaluate:
     cmd: python -m steps.evaluate
@@ -75,16 +75,16 @@ stages:
       size: 238
     - path: input/prepared_test.csv
       hash: md5
-      md5: 6bb7f45cc0617c49bd1701bbe85a5198
-      size: 88994
+      md5: a6227b7736d4a3b35bd6f28aaeddde9b
+      size: 89088
     - path: input/test.csv
       hash: md5
       md5: 35bc27476ce8399b5f1bfaf57e22794b
       size: 97438
     - path: models/pipeline.pkl
       hash: md5
-      md5: 240372273327be6b6ea24c01f3eafe50
-      size: 305140
+      md5: d503b2ddb8146597faffba5c85e44aee
+      size: 329059
     - path: steps/evaluate.py
       hash: md5
       md5: 7d528a76efb85eb13b52f0f00d6bf4ac
@@ -92,5 +92,5 @@ stages:
     outs:
     - path: reports/metrics/test.yaml
       hash: md5
-      md5: 26ac0949dcca7dedab2856ba16cff1f9
-      size: 156
+      md5: 880470491e3e6724eeb0d12f0be96793
+      size: 148
