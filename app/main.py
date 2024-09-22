@@ -9,5 +9,7 @@ def index():
     return "Hello"
 
 @app.post("/predict")
-def predict(data: list[dict]):
+def predict(data: list[dict]|dict):
+    if(type(data) == dict):
+        data = [data]
     return pipeline(data)
